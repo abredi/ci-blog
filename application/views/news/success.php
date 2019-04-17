@@ -1,0 +1,1 @@
+<h1>The News has been created successfully</h1>

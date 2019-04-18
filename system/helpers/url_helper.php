@@ -556,7 +556,7 @@ if ( ! function_exists('redirect'))
 		}
 
 		switch ($method)
-		{
+		{	
 			case 'refresh':
 				header('Refresh:0;url='.$uri);
 				break;

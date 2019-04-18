@@ -1,19 +1,25 @@
 <?php
 class News extends CI_Controller
 {
-
         public function __construct()
         {
-                echo "hello";
                 parent::__construct();
                 $this->load->model('news_model');
                 $this->load->helper('url_helper');
         }
 
+        public function slugs()
+        {
+                print_r($this->news_model->slugs());
+        }
+
         public function index()
         {
+
+                
                 $data['news'] = $this->news_model->get_news();
-                $data['title'] = 'News archive';
+                $data['brand'] = 'Crescent';
+                $data['page'] = 'Addis News';
 
                 $this->load->view('templates/header', $data);
                 $this->load->view('news/index', $data);
@@ -22,6 +28,7 @@ class News extends CI_Controller
 
         public function view($slug = NULL)
         {
+                $data['brand'] = 'Crescent';
                 $data['news_item'] = $this->news_model->get_news($slug);
 
                 if (empty($data['news_item'])) {
@@ -40,18 +47,58 @@ class News extends CI_Controller
                 $this->load->helper('form');
                 $this->load->library('form_validation');
 
-                $data['title'] = 'Create a news item';
-
+                $data['page'] = 'Create A News';
+                $data['brand'] = 'Crescent';
                 $this->form_validation->set_rules('title', 'Title', 'required');
                 $this->form_validation->set_rules('text', 'Text', 'required');
 
+                $news = isset($_SESSION['edit_data']) ? $_SESSION['edit_data'] : [];
+
                 if ($this->form_validation->run() === FALSE) {
                         $this->load->view('templates/header', $data);
-                        $this->load->view('news/create');
+                        $this->load->view('news/create', $news);
                         $this->load->view('templates/footer');
-                } else {   
+                } else {
                         $this->news_model->set_news();
-                        $this->load->view('news/success');
+                        $action = (count($news) > 0) ? 'updated' : 'added';
+                        $this->session->set_flashdata(
+                                'alert',
+                                [
+                                        'type' => 'success',
+                                        'msg' => "{$this->input->post('title')} has been {$action} successfully"
+                                ]
+                        );
+                        redirect('news');
                 }
         }
+
+        public function edit($id)
+        {
+                $news = $this->news_model->getNewsById($id);
+                if ($news) {
+                        $this->session->set_userdata('edit_data', $news);
+                        $this->create();
+                } else {
+                        redirect('news', 'refresh');
+                }
+        }
+
+        public function remove($id)
+        {
+                if (is_numeric($id)) {
+                        $this->news_model->delete($id);
+                }
+
+                $this->session->set_flashdata(
+                        'alert',
+                        [
+                                'type' => 'danger',
+                                'msg' => "The news {$id} has been removed successfully"
+                        ]
+                );
+
+                redirect('news');
+        }
+
+        
 }

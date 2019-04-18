@@ -1,0 +1,11 @@
+.center {
+  display: flex;
+  justify-content: space-between;
+}
+a.card-link.danger {
+  color: #E91E63;
+}
+
+a.card-link.edit {
+  color: #00BCD4;
+}

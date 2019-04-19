@@ -1,7 +1,6 @@
 <?php
 class News_model extends CI_Model
 {
-
         public function __construct()
         {
                 $this->load->database();
@@ -29,7 +28,30 @@ class News_model extends CI_Model
                         'slug' => $slug,
                         'text' => $this->input->post('text')
                 );
+
+                if (isset($_SESSION['edit_data'])) {
+                        $this->db->update('news', $data, array('id' => $_SESSION['edit_data']['id']));
+                        unset($_SESSION['edit_data']);
+                        return;
+                }
  
                 return $this->db->insert('news', $data);
         }
+
+        public function delete($id)
+        {
+                $this->db->delete('news', ['id' => $id]);
+        }
+
+        public function getNewsById($id)
+        {
+               return $this->db->get_where('news', ['id' => $id])->row_array();
+        }
+
+        public function slugs()
+        {
+                return $this->db->select('slug');
+        }
+
+
 }

@@ -1,0 +1,35 @@
+
+.center {
+  display: flex;
+  justify-content: space-between;
+}
+a.card-link.danger {
+  color: #E91E63;
+}
+
+a.card-link.edit {
+  color: #00BCD4;
+}
+.login-logo {
+  width: 12em;
+  height: 12em;
+}
+div.img {
+  display: flex;
+  justify-content: center;
+}
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}

@@ -6,6 +6,17 @@ class News extends CI_Controller
                 parent::__construct();
                 $this->load->model('news_model');
                 $this->load->helper('url_helper');
+                
+                if (!isset($_SESSION['is_logged_in'])) {
+                        $this->session->set_flashdata(
+                                'alert',
+                                [
+                                        'type' => 'danger',
+                                        'msg' => "Please Login First"
+                                ]
+                        );
+                       redirect('auth/login');
+                }
         }
 
         public function slugs()

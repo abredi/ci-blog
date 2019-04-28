@@ -10,7 +10,7 @@ class Auth_model extends CI_Model
   {
     $query = $this->db->get_where('users', [
       'username' => $this->input->post('inputEmail'),
-      'password' => $this->input->post('inputPassword')
+      'u_password' => $this->input->post('inputPassword')
     ]);
     // print_r($query->result_array()); die;
     if (count($query->result_array()) > 0) {
@@ -26,7 +26,7 @@ class Auth_model extends CI_Model
 
     $data = array(
       'username' => $this->input->post('inputEmail'),
-      'password' => $this->input->post('inputPassword')
+      'u_password' => $this->input->post('inputPassword')
     );
 
 

@@ -60,8 +60,8 @@ class News extends CI_Controller
 
                 $data['page'] = 'Create A News';
                 $data['brand'] = 'Crescent';
-                $this->form_validation->set_rules('title', 'Title', 'required');
-                $this->form_validation->set_rules('text', 'Text', 'required');
+                $this->form_validation->set_rules('title', 'Title', 'trim|required|max_length[128]');
+                $this->form_validation->set_rules('text', 'Text', 'trim|required|max_length[1000]');
 
                 $news = isset($_SESSION['edit_data']) ? $_SESSION['edit_data'] : [];
 

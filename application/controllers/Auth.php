@@ -52,8 +52,8 @@ class Auth extends CI_Controller
     $data['page'] = 'Sign Up';
     $data['brand'] = 'Crescent';
 
-    $this->form_validation->set_rules('inputPassword', 'Password', 'required');
-    $this->form_validation->set_rules('inputEmail', 'Email', 'required|valid_email');
+    $this->form_validation->set_rules('inputPassword', 'Password', 'trim|required||min_length[5]|max_length[255]');
+    $this->form_validation->set_rules('inputEmail', 'Email', 'trim|required|valid_email|is_unique[users.username]|max_length[255]');
 
     if ($this->form_validation->run() === FALSE) {
       $this->load->view('templates/header', $data);

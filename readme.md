@@ -47,8 +47,7 @@ CREATE TABLE news (<br>
 );
  </code>
 
- ## Change some configurations in <code>application/config/config.php</code> and <br>
- <code> application/config/database.php</code> files
+ ## Change some configurations in two files
 ### In <code>application/config/config.php</code> change localhost by YOUR_DOMAIN name<br>
 <code>
 $config['base_url'] = 'http://localhost/blog/';

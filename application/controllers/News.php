@@ -6,17 +6,6 @@ class News extends CI_Controller
                 parent::__construct();
                 $this->load->model('news_model');
                 $this->load->helper('url_helper');
-                
-                if (!isset($_SESSION['is_logged_in'])) {
-                        $this->session->set_flashdata(
-                                'alert',
-                                [
-                                        'type' => 'danger',
-                                        'msg' => "Please Login First"
-                                ]
-                        );
-                       redirect('auth/login');
-                }
         }
 
         public function slugs()
@@ -26,8 +15,6 @@ class News extends CI_Controller
 
         public function index()
         {
-
-                
                 $data['news'] = $this->news_model->get_news();
                 $data['brand'] = 'Crescent';
                 $data['page'] = 'Addis News';
@@ -55,6 +42,17 @@ class News extends CI_Controller
 
         public function create()
         {
+                if (! isset($_SESSION['is_logged_in'])) {
+                        $this->session->set_flashdata(
+                                'alert',
+                                [
+                                        'type' => 'danger',
+                                        'msg' => "Please Login First"
+                                ]
+                        );
+                       redirect('auth/login');
+                }
+                
                 $this->load->helper('form');
                 $this->load->library('form_validation');
 
@@ -96,6 +94,16 @@ class News extends CI_Controller
 
         public function remove($id)
         {
+                if (! isset($_SESSION['is_logged_in'])) {
+                        $this->session->set_flashdata(
+                                'alert',
+                                [
+                                        'type' => 'danger',
+                                        'msg' => "Please Login First"
+                                ]
+                        );
+                       redirect('auth/login');
+                }
                 if (is_numeric($id)) {
                         $this->news_model->delete($id);
                 }

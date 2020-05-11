@@ -11,7 +11,7 @@
 
 <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand py-0" href="#">
+<a class="navbar-brand py-0" href="<?php echo site_url(); ?>">
                         <img class="" src="<?php echo base_url('assets/img/logo.png') ?>" alt="" width="72" height="72">
                         <?php echo $brand; ?></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

@@ -17,7 +17,7 @@ class Auth_model extends CI_Model
       $this->session->set_userdata('is_logged_in', true);
       return true;
     }
-      return false;
+    return false;
     
   }
 
@@ -28,7 +28,6 @@ class Auth_model extends CI_Model
       'username' => $this->input->post('inputEmail'),
       'u_password' => $this->input->post('inputPassword')
     );
-
 
     return $this->db->insert('users', $data);
   }

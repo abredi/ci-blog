@@ -23,13 +23,13 @@
         $attributes = array('class' => 'form form-signin');
         echo form_open(site_url('auth/login'));
         ?>
-        <label for="title">Email</label>
-        <input type="input" name="inputEmail" value="" class="form-control" required autofocus /><br />
-        <label for="text">Password</label>
-        <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password">
-        <br />
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <p class="mt-5 mb-3 text-muted">&copy; 2017-<?php echo date('Y'); ?></p>
+          <label for="title">Email</label>
+          <input type="input" name="inputEmail" value="" class="form-control" required autofocus /><br />
+          <label for="text">Password</label>
+          <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password">
+          <br />
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+          <p class="mt-5 mb-3 text-muted">&copy; 2017-<?php echo date('Y'); ?></p>
         </form>
       </div>
     </div>
